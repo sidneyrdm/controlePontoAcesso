@@ -34,7 +34,10 @@ public class JornadaTrabalhoService {
         return jornadaTrabalhoRepository.save(jornadaTrabalho);
     }
 
-    public void deleteById(Long idJornada) {
-        jornadaTrabalhoRepository.deleteById(idJornada);
+    public Optional<JornadaTrabalho> deleteById(Long idJornada) {
+        Optional<JornadaTrabalho> jornadaTrabalho = this.getById(idJornada);
+
+        jornadaTrabalhoRepository.deleteById(jornadaTrabalho.get().getId());
+        return jornadaTrabalho;
     }
 }
